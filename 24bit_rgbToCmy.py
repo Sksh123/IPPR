@@ -13,7 +13,9 @@ if image is None:
 
 # Convert RGB to CMY
 # Subtracting RGB colors from 255
-cmy_image = 255 - image
+cmy_image =255 - image[:, :, :3] 
+
+cmy_image = np.dstack((cmy_image[:, :, 0], cmy_image[:, :, 1], cmy_image[:, :, 2]))
 
 # Display the original and CMY images using matplotlib
 plt.figure(figsize=(12, 6))
@@ -26,7 +28,7 @@ plt.axis('off')
 
 # Display CMY image - Note: Displaying it as RGB since it's visually similar
 plt.subplot(1, 2, 2)
-plt.imshow(cv2.cvtColor(cmy_image, cv2.COLOR_BGR2RGB))
+plt.imshow(cv2.cvtColor(cmy_image.astype(np.uint8), cv2.COLOR_BGR2RGB))
 plt.title('CMY Image ')
 plt.axis('off')
 
