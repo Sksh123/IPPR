@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the RGB image
-image_path = '24bit_rgb.jpeg'  # Update the path to your image
+image_path = 'ippr_assignment_1a_img1.jpg'  # Update the path to your image
 image = cv2.imread(image_path)
 
 # Check if the image has been loaded properly
@@ -13,9 +13,7 @@ if image is None:
 
 # Convert RGB to CMY
 # Subtracting RGB colors from 255
-cmy_image =255 - image[:, :, :3] 
-
-cmy_image = np.dstack((cmy_image[:, :, 0], cmy_image[:, :, 1], cmy_image[:, :, 2]))
+cmy_image = 255 - image
 
 # Display the original and CMY images using matplotlib
 plt.figure(figsize=(12, 6))
@@ -28,9 +26,11 @@ plt.axis('off')
 
 # Display CMY image - Note: Displaying it as RGB since it's visually similar
 plt.subplot(1, 2, 2)
-plt.imshow(cv2.cvtColor(cmy_image.astype(np.uint8), cv2.COLOR_BGR2RGB))
+plt.imshow(cv2.cvtColor(cmy_image, cv2.COLOR_BGR2RGB))
 plt.title('CMY Image ')
 plt.axis('off')
 
 plt.tight_layout()
 plt.show()
+
+
